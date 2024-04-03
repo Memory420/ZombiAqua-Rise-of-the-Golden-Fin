@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 53a64aa9fa1a5a74a883bec7a2d93f86, type: 3}
-  pressedSprite: {fileID: 21300000, guid: 53a64aa9fa1a5a74a883bec7a2d93f86, type: 3}
+  pressedSprite: {fileID: 21300000, guid: 6f38dcbe87b85c34aa19d7dd62c91ce0, type: 3}
   onPressed:
     m_PersistentCalls:
       m_Calls:
@@ -298,6 +298,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  clickSound: {fileID: 8300000, guid: 821eb14df587a3c4ab89175d2e75706d, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +528,8 @@ GameObject:
   m_Component:
   - component: {fileID: 654444529}
   - component: {fileID: 654444528}
+  - component: {fileID: 654444530}
+  - component: {fileID: 654444531}
   m_Layer: 0
   m_Name: "\u043A\u043D\u043E\u043F\u0430\u043A\u0430_\u0432\u044B\u0445\u043E\u0434"
   m_TagString: Untagged
@@ -601,6 +604,95 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654444530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654444527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cf2af5430f3d548a88953ffedbb44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSprite: {fileID: 21300000, guid: 0343a4bb02f231c45903b3863ac856ec, type: 3}
+  pressedSprite: {fileID: 21300000, guid: 128e3807e20ca584a8ff6956cbe16a80, type: 3}
+  onPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 654444530}
+        m_TargetAssemblyTypeName: CustomButton, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  clickSound: {fileID: 8300000, guid: 821eb14df587a3c4ab89175d2e75706d, type: 3}
+--- !u!60 &654444531
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654444527}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.44553632, y: 0.14959645}
+      - {x: -0.40332544, y: -0.062325}
+      - {x: -0.334759, y: -0.30075347}
+      - {x: -0.2616973, y: -0.31370497}
+      - {x: 0.5, y: -0.1253296}
+      - {x: 0.5, y: -0.03}
+      - {x: 0.46124026, y: 0.23467052}
+      - {x: 0.41562012, y: 0.34029064}
+      - {x: 0.38467038, y: 0.3568604}
+      - {x: 0.27124026, y: 0.35467052}
+      - {x: 0.04, y: 0.29999998}
+      - {x: -0.099999994, y: 0.28}
+      - {x: -0.25, y: 0.25}
+      - {x: -0.36160856, y: 0.21437974}
+  m_UseDelaunayMesh: 0
 --- !u!1 &668330890
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,6 +703,8 @@ GameObject:
   m_Component:
   - component: {fileID: 668330892}
   - component: {fileID: 668330891}
+  - component: {fileID: 668330893}
+  - component: {fileID: 668330894}
   m_Layer: 0
   m_Name: "\u043A\u043D\u043E\u043F\u0430\u043A\u0430_\u043D\u043E\u0432\u0430\u044F\u0438\u0433\u0440\u0430"
   m_TagString: Untagged
@@ -685,6 +779,95 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &668330893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668330890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cf2af5430f3d548a88953ffedbb44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSprite: {fileID: 21300000, guid: cb063747ce99814468513bf8ad0a0ac5, type: 3}
+  pressedSprite: {fileID: 21300000, guid: d15b2a1d2a2bf0544bc5ce5e945be0ba, type: 3}
+  onPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 668330893}
+        m_TargetAssemblyTypeName: CustomButton, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  clickSound: {fileID: 8300000, guid: 821eb14df587a3c4ab89175d2e75706d, type: 3}
+--- !u!60 &668330894
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668330890}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.0912068, y: 0.20652008}
+      - {x: 1.0106459, y: 0.50897425}
+      - {x: 0.6163292, y: 0.5025401}
+      - {x: -0.28533608, y: 0.3577007}
+      - {x: -0.95728266, y: 0.16393548}
+      - {x: -1.12, y: 0.099999994}
+      - {x: -1.12, y: -0.02}
+      - {x: -1.01, y: -0.47}
+      - {x: -0.96999997, y: -0.48999998}
+      - {x: -0.94, y: -0.48999998}
+      - {x: -0.93, y: -0.45999998}
+      - {x: -0.9440421, y: -0.49489108}
+      - {x: -0.66504914, y: -0.41602266}
+      - {x: 1.1101465, y: -0.037880868}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1185333342
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +925,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 62e86f610733fbc4d98078eb10b115f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
