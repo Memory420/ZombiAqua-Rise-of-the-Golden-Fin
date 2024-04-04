@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Item", menuName = "Inventory/Items", order = 1)]
+[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class Item : ScriptableObject
 {
-    public Sprite image;
     public string itemName;
     public string itemDescription;
+    public Texture2D itemTexture2d;
 }
