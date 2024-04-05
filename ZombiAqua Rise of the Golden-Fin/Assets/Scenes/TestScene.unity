@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 733783439}
   - component: {fileID: 733783440}
   - component: {fileID: 733783441}
+  - component: {fileID: 733783442}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -456,7 +457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733783432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36229217, y: 3.83, z: 0.022094626}
+  m_LocalPosition: {x: 0.36229217, y: 1.75, z: 0.022094626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -615,7 +616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666bde7b6f6ff764da835606b55f877d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 400
+  characterAnimator: {fileID: 0}
+  m_JumpForce: 300
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -645,6 +647,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 733783440}
   runSpeed: 40
+--- !u!114 &733783442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733783432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671e5a04fcd8b3d4386df7e0c3119d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1899403481
 GameObject:
   m_ObjectHideFlags: 0
