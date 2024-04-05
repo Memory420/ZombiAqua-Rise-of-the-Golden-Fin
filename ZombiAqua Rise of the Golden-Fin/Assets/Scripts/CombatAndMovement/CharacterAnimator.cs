@@ -9,6 +9,7 @@ public class CharacterAnimator : MonoBehaviour
     private readonly int jumpHash = Animator.StringToHash("Jump");
     private readonly int attackHash = Animator.StringToHash("Attack");
     private readonly int strongAttackHash = Animator.StringToHash("StrongAttack");
+    private readonly int speedJumpHash = Animator.StringToHash("SpeedJump");
 
     private void Awake()
     {
@@ -33,5 +34,9 @@ public class CharacterAnimator : MonoBehaviour
     public void StrongAttack()
     {
         animator.SetTrigger(strongAttackHash);
+    }
+    public void SpeedJump ()
+    {
+        animator.SetTrigger(speedJumpHash);
     }
 }

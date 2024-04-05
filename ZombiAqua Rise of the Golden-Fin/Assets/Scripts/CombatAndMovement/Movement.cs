@@ -7,23 +7,35 @@ public class Movement : MonoBehaviour
     public float runSpeed = 40f;
 
     float horizontalMove = 0f;
-    bool jump = false; // Добавлена переменная для отслеживания запроса на прыжок
+    bool jump = false;
+    bool attack = false; // Добавляем переменную для отслеживания запроса на атаку
 
     private void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        // Проверка на нажатие кнопки прыжка в этом кадре
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+        }
+
+        // Проверяем нажатие ЛКМ
+        if (Input.GetMouseButtonDown(0)) // 0 - это ЛКМ
+        {
+            attack = true;
         }
     }
 
     void FixedUpdate()
     {
-        // Вызываем Move с текущим горизонтальным движением и статусом прыжка
-        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
-        jump = false; // Сброс после прыжка, чтобы избежать повторного прыжка
+        // Передаем все состояния действий в контроллер персонажа
+        controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump, attack);
+        jump = false; // Сбрасываем после прыжка
+
+        if (attack)
+        {
+            // Сбрасываем флаг атаки после ее обработки
+            attack = false;
+        }
     }
 }

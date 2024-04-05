@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -64,7 +65,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
 
-    public void Move(float move, bool crouch, bool jump)
+    public void Move(float move, bool crouch, bool jump, bool attack)
     {
         // If crouching, check to see if the character can stand up
         if (!crouch)
@@ -128,14 +129,36 @@ public class CharacterController2D : MonoBehaviour
                 Flip();
             }
         }
-        // If the player should jump...
-        if (m_Grounded && jump)
+
+        // Если игрок должен прыгнуть...
+        if (m_Grounded && jump && !attack)
         {
-            // Add a vertical force to the player.
-            m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-            characterAnimator.Jump();
+
+
+            if (Input.GetAxisRaw("Horizontal") != 0)
+            {
+                float defaultDelay = 0.2f;
+                characterAnimator.SpeedJump();
+                StartCoroutine(ApplySpeedJumpForce(move,defaultDelay));
+            }
+
+
+            else
+            {
+                float defaultDelay = 0.3f;
+                characterAnimator.Jump(); // Вызываем анимацию прыжка
+                StartCoroutine(ApplyJumpForce(move, defaultDelay)); // Запускаем корутину для применения силы прыжка
+            }
+
         }
+
+
+        // Если персонаж на земле и была запрошена атака
+        if (m_Grounded && attack)
+        {
+            characterAnimator.Attack(); // Вызываем анимацию атаки
+        }
+
     }
 
 
@@ -148,5 +171,43 @@ public class CharacterController2D : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    // Корутина для задержки перед прыжком
+    private IEnumerator ApplyJumpForce(float move,float waitingTime)
+    {
+        // Ждем определенное количество времени, чтобы анимация согнутых коленей была синхронизирована с прыжком
+        yield return new WaitForSeconds(waitingTime); // Настройте это значение в соответствии с вашими анимациями
+
+        float jumpForce = m_JumpForce;
+        Vector2 jumpDirection = new Vector2(0f, 1f);
+
+        // Проверяем, двигается ли игрок (проверка на бег)
+        if (Mathf.Abs(move) > 0.1)
+        {
+            // Если да, то делаем прыжок более "настильным"
+            jumpForce *= 0.8f; // Уменьшаем силу прыжка
+            jumpDirection.x = move > 0 ? 1f : -1f; // Направление прыжка зависит от направления движения
+            jumpDirection.y = 0.5f; // Уменьшаем вертикальную составляющую для "настильного" прыжка
+            m_Rigidbody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+        }
+        else
+        {
+            m_Rigidbody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+    private IEnumerator ApplySpeedJumpForce(float move,float waitingTime)
+    {
+        yield return new WaitForSeconds(waitingTime);
+
+        float jumpForce = m_JumpForce;
+        Vector2 jumpDirection = new Vector2(0f, 1f);
+
+        // Если да, то делаем прыжок более "настильным"
+        jumpForce *= 0.8f; // Уменьшаем силу прыжка
+        jumpDirection.x = move > 0 ? 1f : -1f; // Направление прыжка зависит от направления движения
+        jumpDirection.y = 0.7f; // Уменьшаем вертикальную составляющую для "настильного" прыжка
+        m_Rigidbody2D.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
+
     }
 }
