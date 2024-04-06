@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Potion_1
   itemDescription: 123
+  itemType: 2
   itemTexture2d: {fileID: 2800000, guid: 86d6c1b1dbb061f4ab61d46e8e2c71f0, type: 3}

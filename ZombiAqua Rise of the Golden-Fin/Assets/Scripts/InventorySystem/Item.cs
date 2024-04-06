@@ -8,5 +8,14 @@ public class Item : ScriptableObject
 {
     public string itemName;
     public string itemDescription;
+    public ItemType itemType;
     public Texture2D itemTexture2d;
+}
+public enum ItemType
+{
+    Weapon,
+    Throwable,
+    Edible,
+    Wearable,
+    None
 }

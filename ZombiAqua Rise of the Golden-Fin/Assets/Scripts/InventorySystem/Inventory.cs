@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("AddItem");
-            AddItem(dev_item1);
+            AddItem(dev_item1, 2);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -30,80 +31,64 @@ public class Inventory : MonoBehaviour
             ClearInventory();
         }
     }
+    public void UpdateInventory()
+    {
+        UpdateIcons();
+        UpdateText();
+    }
+    public void UpdateText()
+    {
+        foreach (ItemSlot slot in itemSlots)
+        {
+            TextMeshProUGUI textMeshProUGUI = slot.GetComponentInChildren<TextMeshProUGUI>();
+            if (slot.quantity > 1)
+            {
+                textMeshProUGUI.text = slot.quantity.ToString();
+            }
+            else
+            {
+                textMeshProUGUI.text = "";
+            }
+        }
+    }
     public void UpdateIcons()
     {
         foreach (ItemSlot slot in itemSlots)
         {
-            if (slot.quantity == 0)
+            Image slotImage = slot.GetComponentInChildren<Image>();
+            if (slot.item != null)
             {
-                slot.item = null;
-                slot.text.text = "";
+                
+                Sprite sprite = Sprite.Create(slot.item.itemTexture2d, new Rect(0.0f, 0.0f, slot.item.itemTexture2d.width, slot.item.itemTexture2d.height), new Vector2(0.5f, 0.5f), 100.0f);
+                slotImage.color = new Color(1f, 1f, 1f, 1f);
+                slotImage.sprite = sprite;
             }
-        }
-        foreach (ItemSlot slot in itemSlots)
-        {
-            Image image = slot.GetComponentInChildren<Image>();
-
-            if (slot.item != null && slot.item.itemTexture2d != null)
+            else if (slot.item == null)
             {
-                if (image != null)
-                {
-                    Sprite sprite = Sprite.Create(slot.item.itemTexture2d, new Rect(0, 0, slot.item.itemTexture2d.width, slot.item.itemTexture2d.height), new Vector2(0.5f, 0.5f));
-                    image.color = new Color(1f, 1f, 1f, 1f);
-                    image.sprite = sprite;
-                    Debug.Log("Ставим картинку");
-                }
-                else
-                {
-                    Debug.LogWarning("Image component not found on ItemSlot child object.");
-                }
-            }
-            else
-            {
-                if (image != null)
-                {
-                    image.color = new Color(0f, 0f, 0f, 0f);
-                    Debug.Log("Картинки нет или слот пустой");
-                }
-                else
-                {
-                    Debug.LogWarning("Image component not found on ItemSlot child object.");
-                }
-            }
-        }
-        foreach (ItemSlot slot in itemSlots)
-        {
-            if (slot.item == null)
-            {
-                slot.text.text = "";
-                slot.quantity = 0;
+                slotImage.color = Color.clear;
+                slotImage.sprite = null;
             }
         }
     }
     public bool AddItem(Item _item, int _quantity = 1)
     {
-        foreach (ItemSlot slot in itemSlots) // Если предмет есть в слоте
+        foreach (ItemSlot slot in itemSlots)
         {
-            if (slot.item == _item)
+            if (slot.slotType.ToString() == _item.itemType.ToString())
             {
-                slot.quantity += _quantity;
-                if(slot.quantity > 0)
+                if (slot.item == null)
                 {
-                    slot.text.text = slot.quantity.ToString();
+                    slot.item = _item;
+                    slot.quantity = _quantity;
+                    UpdateInventory();
+                    return true;
                 }
-                UpdateIcons();
-                return true;
-            }
-        }
-        foreach (ItemSlot slot in itemSlots) // Если предмета нет в слоте
-        {
-            if (slot.item == null) 
-            {
-                slot.item = _item;
-                slot.quantity = _quantity;
-                slot.text.text = slot.quantity.ToString();
-                UpdateIcons();
-                return true;
+                else if (slot.item == _item)
+                {
+                    slot.quantity += _quantity;
+                    UpdateInventory();
+                    return true;
+                }
             }
         }
         return false;
@@ -115,7 +100,7 @@ public class Inventory : MonoBehaviour
             slot.item = null;
             slot.quantity = 0;
             slot.text.text = "";
-            UpdateIcons();
+            UpdateInventory();
         }
     }
     public bool DeleteItem(Item _item, int _quantity = 1)
@@ -127,7 +112,7 @@ public class Inventory : MonoBehaviour
                 slot.item = null;
                 slot.quantity = 0;
                 slot.text.text = "";
-                UpdateIcons();
+                UpdateInventory();
                 return true;
             }
             else if (slot.item == _item && slot.quantity > _quantity)
@@ -137,7 +122,7 @@ public class Inventory : MonoBehaviour
                 {
                     slot.text.text = slot.quantity.ToString();
                 }
-                UpdateIcons();
+                UpdateInventory();
                 return true;
             }
             else if (slot.item == _item && slot.quantity < _quantity)

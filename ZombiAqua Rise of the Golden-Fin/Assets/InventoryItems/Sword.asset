@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9427dd8fcd84f424eb04930da64d7596, type: 3}
-  m_Name: Potion_2
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  itemName: Potion_2
+  itemName: Sword
   itemDescription: 321
-  itemTexture2d: {fileID: 2800000, guid: b662f79b638c39a428968b615e57dc82, type: 3}
+  itemType: 0
+  itemTexture2d: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}

@@ -8,12 +8,13 @@ public class ItemSlot : MonoBehaviour
     public TextMeshProUGUI text;
     public Item item;
     public int quantity;
-    public ItemType itemType;
+    public SlotType slotType;
 }
-public enum ItemType
+public enum SlotType
 {
     Weapon,
     Throwable,
     Edible,
+    Wearable,
     None
 }
